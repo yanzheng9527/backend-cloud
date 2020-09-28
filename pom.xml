@@ -11,6 +11,7 @@
 	<groupId>com.randy.backend.cloud</groupId>
 	<artifactId>backend-cloud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 	<name>backend-cloud</name>
 	<description>backend-cloud</description>
 
