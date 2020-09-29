@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
   /*注入“服务提供者”的名称*/
-  @Value("${provider.name}")
+  @Value("${spring.application.name}")
   private String name;
   /*注入“服务提供者”的端口号*/
   @Value("${server.port}")
