@@ -4,14 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @RestController
-public class TestController {
+@RequestMapping("/ribbon")
+public class RibbonController {
   @Autowired private LoadBalancerClient loadBalancerClient;
+  @Autowired private RestTemplate restTemplate;
 
   @GetMapping("/test")
   public String test() {
@@ -22,5 +26,20 @@ public class TestController {
     String str =
         serviceInstance.getHost() + ":" + serviceInstance.getPort() + "@" + sdf.format(date);
     return str;
+  }
+
+  @GetMapping("/hello")
+  public String hello() {
+    return restTemplate.getForObject("http://providertest/" + "hello", String.class);
+  }
+
+  @GetMapping("/LoadInstance")
+  public String LoadInstance() {
+    /* *
+     * restTemplate.getForObject()与loadBalancerClient.choose不能放在一个方法中，因为restTemplate.getForObject()包含了choose方法
+     *
+     */
+    ServiceInstance serviceInstance = loadBalancerClient.choose("providertest");
+    return serviceInstance.toString();
   }
 }
