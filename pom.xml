@@ -58,6 +58,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <!-- 日志-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
