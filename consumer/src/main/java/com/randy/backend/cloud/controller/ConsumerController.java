@@ -14,7 +14,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/consumer")
 public class ConsumerController {
-
+  // 不需要Ribbon，LoadBalancerClient也是可以用的，默认为轮询方式。
   @Autowired private LoadBalancerClient loadBalancer;
   @Autowired private DiscoveryClient discoveryClient;
 

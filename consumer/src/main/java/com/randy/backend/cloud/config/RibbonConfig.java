@@ -1,7 +1,7 @@
 package com.randy.backend.cloud.config;
 
 import com.netflix.loadbalancer.IRule;
-import com.netflix.loadbalancer.RandomRule;
+import com.netflix.loadbalancer.RoundRobinRule;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClientConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +15,9 @@ public class RibbonConfig {
    */
   @Bean
   public IRule iRule() {
-    return new RandomRule();
+    // 随机负载均衡策略
+    //    return new RandomRule();
+    // 轮询负载均衡策略
+    return new RoundRobinRule();
   }
 }

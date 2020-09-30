@@ -14,6 +14,7 @@ import java.util.Date;
 @RestController
 @RequestMapping("/ribbon")
 public class RibbonController {
+  // 添加了Ribbon后，会使用Ribbon配置的负载均衡策略。
   @Autowired private LoadBalancerClient loadBalancerClient;
   @Autowired private RestTemplate restTemplate;
 
