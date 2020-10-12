@@ -78,6 +78,12 @@
         </dependencies>
     </dependencyManagement>
 
+    <modules>
+        <module>base-turbine</module>
+        <module>provider</module>
+        <module>consumer</module>
+    </modules>
+
     <build>
         <plugins>
             <plugin>
