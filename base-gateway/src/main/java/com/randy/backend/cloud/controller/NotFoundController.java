@@ -16,4 +16,12 @@ public class NotFoundController {
     stringMap.put("data", "found");
     return Mono.just(stringMap);
   }
+
+  @RequestMapping(value = "/fallback")
+  public Mono<Map<String, String>> fallback() {
+    Map<String, String> stringMap = new HashMap<>();
+    stringMap.put("code", "100");
+    stringMap.put("data", "Service Not Available");
+    return Mono.just(stringMap);
+  }
 }
