@@ -83,6 +83,7 @@
         <module>consumer</module>
         <module>base-turbine</module>
         <module>base-gateway</module>
+        <module>base-config</module>
     </modules>
 
     <build>
