@@ -8,11 +8,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FeignConfiguration {
 
+  /*
+   * Spring Cloud Netflix默认的SpringMvcController将替换为feign.Contract.Default。
+   * 用feign.Contract.Default将契约改为Feign原生的默认契约，就可以使用feign自带的注解了。
+   * 设置了才能使用@RequestLine，否则只能用SpringMVC的@RequestMapping！
+   */
   @Bean
   public Contract feignContract() {
-    /*  Spring Cloud Netflix默认的SpringMvcController将替换为feign.Contract.Default。
-     *  用feign.Contract.Default将契约改为Feign原生的默认契约，就可以使用feign自带的注解了
-     */
     return new feign.Contract.Default();
   }
 
