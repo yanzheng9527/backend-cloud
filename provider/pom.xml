@@ -24,21 +24,43 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- Spring Cloud Config Client支持-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-        <!-- Spring Cloud Bus-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-bus</artifactId>
-        </dependency>
-        <!-- Spring Cloud Bus支持RabbitMQ-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
-        </dependency>
+        <!--        &lt;!&ndash; Spring Cloud Config Client支持&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-starter-config</artifactId>-->
+        <!--        </dependency>-->
+        <!--        &lt;!&ndash; Spring Cloud Bus&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-bus</artifactId>-->
+        <!--        </dependency>-->
+        <!--        &lt;!&ndash; Spring Cloud Bus支持RabbitMQ&ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.cloud</groupId>-->
+        <!--            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>io.micrometer</groupId>-->
+        <!--            <artifactId>micrometer-core</artifactId>-->
+        <!--            <version>1.0.5</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.micrometer</groupId>-->
+        <!--            <artifactId>micrometer-registry-prometheus</artifactId>-->
+        <!--            <version>1.0.5</version>-->
+        <!--            <exclusions>-->
+        <!--                <exclusion>-->
+        <!--                    &lt;!&ndash; 由于 micrometer-registry-prometheus 默认的core包是 1.0.1版本的，与当前的组件版本不适应，需要排除 &ndash;&gt;-->
+        <!--                    <groupId>io.micrometer</groupId>-->
+        <!--                    <artifactId>micrometer-core</artifactId>-->
+        <!--                </exclusion>-->
+        <!--            </exclusions>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>de.codecentric</groupId>-->
+        <!--            <artifactId>spring-boot-admin-starter-client</artifactId>-->
+        <!--        </dependency>-->
     </dependencies>
 
 </project>

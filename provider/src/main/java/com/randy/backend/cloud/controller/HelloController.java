@@ -1,6 +1,8 @@
 package com.randy.backend.cloud.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,5 +20,10 @@ public class HelloController {
     String str = "provider:" + name + "; port:" + port;
     // 返回数据
     return str;
+  }
+
+  @GetMapping(value = "/hello/{string}")
+  public String echo(@PathVariable String string) {
+    return string;
   }
 }
