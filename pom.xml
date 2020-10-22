@@ -79,6 +79,8 @@
     </dependencyManagement>
 
     <modules>
+        <module>base-common</module>
+        <module>base-security</module>
         <!--        <module>provider</module>-->
         <!--        <module>consumer</module>-->
         <!--        <module>base-turbine</module>-->
