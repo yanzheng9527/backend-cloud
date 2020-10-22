@@ -1,13 +1,13 @@
-package com.randy.backend.cloud;
+package com.randy.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BaseSecurityApplication {
+public class BaseCommonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BaseSecurityApplication.class, args);
+		SpringApplication.run(BaseCommonApplication.class, args);
 	}
 
 }

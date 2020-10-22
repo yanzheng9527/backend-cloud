@@ -1,4 +1,4 @@
-package com.randy.backend.cloud;
+package com.randy.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
