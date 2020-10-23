@@ -1,6 +1,6 @@
-package com.randy.backend.cloud.controller;
+package com.randy.backend.controller;
 
-import com.randy.backend.cloud.feign.MyFeignClient3;
+import com.randy.backend.feign.MyFeignClient3;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

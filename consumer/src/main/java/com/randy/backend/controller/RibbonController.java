@@ -1,4 +1,4 @@
-package com.randy.backend.cloud.controller;
+package com.randy.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;

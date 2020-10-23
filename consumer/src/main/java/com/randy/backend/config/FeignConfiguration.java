@@ -1,4 +1,4 @@
-package com.randy.backend.cloud.config;
+package com.randy.backend.config;
 
 import feign.Contract;
 import feign.Logger;

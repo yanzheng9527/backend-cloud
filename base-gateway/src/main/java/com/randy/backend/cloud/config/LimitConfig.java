@@ -1,4 +1,4 @@
-package com.randy.backend.cloud.config;
+package com.randy.backend.config;
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.randy.backend.cloud.feign;
+package com.randy.backend.feign;
 
 import feign.Param;
 import feign.RequestLine;

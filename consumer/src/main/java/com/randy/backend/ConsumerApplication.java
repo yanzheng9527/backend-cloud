@@ -1,7 +1,7 @@
-package com.randy.backend.cloud;
+package com.randy.backend;
 
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
-import com.randy.backend.cloud.config.RibbonConfig;
+import com.randy.backend.config.RibbonConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;

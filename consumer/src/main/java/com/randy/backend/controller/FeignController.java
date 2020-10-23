@@ -1,7 +1,7 @@
-package com.randy.backend.cloud.controller;
+package com.randy.backend.controller;
 
-import com.randy.backend.cloud.feign.MyFeignClient;
-import com.randy.backend.cloud.feign.MyFeignClient2;
+import com.randy.backend.feign.MyFeignClient;
+import com.randy.backend.feign.MyFeignClient2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
