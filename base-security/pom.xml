@@ -13,12 +13,31 @@
     <name>base-security</name>
     <description>base-security</description>
 
-
     <dependencies>
         <dependency>
             <groupId>com.randy.backend</groupId>
             <artifactId>base-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- Spring Cloud Config Client支持-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <!-- Spring Cloud Bus-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-bus</artifactId>
+        </dependency>
+        <!-- Spring Cloud Bus支持RabbitMQ-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+        </dependency>
+        <!-- Spring Cloud Consul 的支持-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
