@@ -21,7 +21,7 @@ import java.util.List;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
   @Autowired private PasswordEncoder passwordEncoder;
   /** Spring Boot版本2.0.*无法自动注入AuthenticationManager,需要重写authenticationManagerBean */

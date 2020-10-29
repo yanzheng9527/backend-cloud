@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 // @EnableOAuth2Sso
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 判断用户对某个控制层的方法是否具有访问权限
-public class ResourceConfig extends ResourceServerConfigurerAdapter {
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
   @Autowired private AuthenticationSuccessHandler myAuthenticationSuccessHandler;
   @Autowired private AuthenticationFailureHandler myAuthenticationFailHander;
 
