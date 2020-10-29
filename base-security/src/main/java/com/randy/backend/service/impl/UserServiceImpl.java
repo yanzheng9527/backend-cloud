@@ -31,6 +31,13 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     return new PageInfo<>(mapper.selectByCondition(condition));
   }
 
+  public User findByAccount(String account) {
+    User user = new User();
+    user.setAccount(account);
+    User result = userMapper.selectOne(user);
+    return result;
+  }
+
   @Override
   public List<User> aopTest() {
     List<User> users = userMapper.aopTest();

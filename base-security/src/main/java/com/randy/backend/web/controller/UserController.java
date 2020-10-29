@@ -12,8 +12,11 @@ import com.randy.backend.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -139,5 +142,18 @@ public class UserController extends BaseController<User> {
     System.out.println("userService:" + userService.getClass());
     //    return apiHandler.responseDto(users);
     return users;
+  }
+
+  @GetMapping("/register")
+  public ResponseEntity<Dto> register(User user) {
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    user.setPassword(encoder.encode(user.getPassword()));
+    return ResponseEntity.ok(new Dto(userService.insert(user)));
+  }
+
+  @GetMapping("/member")
+  public Principal user(Principal member) {
+    /** 获取当前用户信息 */
+    return member;
   }
 }

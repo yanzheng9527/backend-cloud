@@ -1,9 +1,13 @@
 package com.randy.backend.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User extends Entity {
+public class User extends Entity implements UserDetails {
   private String account;
   private String password;
   private String phone;
@@ -13,6 +17,7 @@ public class User extends Entity {
   //  @Transient private String permCodes;
   //  private String[] permCodes;
   private Set<String> permCodes = new HashSet<>();
+  private Collection<? extends GrantedAuthority> authorities;
 
   public String getAccount() {
     return account;
@@ -22,8 +27,44 @@ public class User extends Entity {
     this.account = account;
   }
 
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    //    List<GrantedAuthority> authorities = new ArrayList<>();
+    //
+    //    for (Role role : roles) {
+    //      authorities.add(new SimpleGrantedAuthority(role.getName()));
+    //    }
+    //    return authorities;
+    return this.authorities;
+  }
+
   public String getPassword() {
     return password;
+  }
+
+  @Override
+  public String getUsername() {
+    return account;
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return true;
   }
 
   public void setPassword(String password) {
@@ -84,5 +125,9 @@ public class User extends Entity {
 
   public void setPermCodes(Set<String> permCodes) {
     this.permCodes = permCodes;
+  }
+
+  public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+    this.authorities = authorities;
   }
 }

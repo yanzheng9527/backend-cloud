@@ -8,6 +8,12 @@ public class Dto<T> implements Serializable {
   private T data;
   private String message;
 
+  public Dto() {}
+
+  public Dto(T data) {
+    this.data = data;
+  }
+
   public int getCode() {
     return code;
   }
