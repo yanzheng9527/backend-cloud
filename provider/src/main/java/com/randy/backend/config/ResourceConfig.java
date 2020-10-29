@@ -28,8 +28,19 @@ public class ResourceConfig extends ResourceServerConfigurerAdapter {
     //        .failureHandler(myAuthenticationFailHander)
     //        .and()
     //        .authorizeRequests();
-    http.authorizeRequests().antMatchers("/actuator/**").permitAll();
+    //    http.authorizeRequests().antMatchers("/actuator/**", "/test/getCurrentUser").permitAll();
     //    .anyRequest().authenticated()
     // 由于所有接口默认会被资源服务器保护的，所以这个地方我们需要放行注册接口
+
+    http.csrf()
+        .disable()
+        .authorizeRequests()
+        .antMatchers("/actuator/**", "/test/getCurrentUser")
+        .permitAll()
+        .anyRequest()
+        .authenticated()
+        .and()
+        .formLogin()
+        .permitAll();
   }
 }
