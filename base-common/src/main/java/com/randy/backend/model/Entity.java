@@ -1,20 +1,26 @@
 package com.randy.backend.model;
 
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 
 public class Entity implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  @Id
+  //  @Id
   //  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @TableId(value = "id", type = IdType.ASSIGN_UUID)
   protected String id;
 
-  @Transient protected Integer pageNum;
-  @Transient protected Integer pageSize;
+  //  @Transient protected Integer pageNum;
+  //  @Transient protected Integer pageSize;
+  //  @Transient protected String flag;
 
-  @Transient protected String flag;
+  protected transient Integer pageNum;
+  protected transient Integer pageSize;
+  protected transient String flag;
+
   // 业务数据上放上processInstanceId用于简化查询功能。
   //  protected String processInstanceId;
   //  protected String taskId;

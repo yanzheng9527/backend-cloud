@@ -1,5 +1,7 @@
 package com.randy.backend.model;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,12 +14,24 @@ public class User extends Entity implements UserDetails {
   private String password;
   private String phone;
   private String email;
-  private Set<Role> roles = new HashSet<>(); // 用户所有角色值，用于shiro做角色权限的判断
-  private Set<Permission> perms = new HashSet<>(); // 用户所有权限值，用于shiro做资源权限的判断
+  private transient Set<Role> roles = new HashSet<>(); // 用户所有角色值，用于shiro做角色权限的判断
+  private transient Set<Permission> perms = new HashSet<>(); // 用户所有权限值，用于shiro做资源权限的判断
   //  @Transient private String permCodes;
   //  private String[] permCodes;
-  private Set<String> permCodes = new HashSet<>();
+  private transient Set<String> permCodes = new HashSet<>();
   private Collection<? extends GrantedAuthority> authorities;
+
+  @TableField(fill = FieldFill.INSERT)
+  private String createTime;
+
+  @TableField(fill = FieldFill.INSERT)
+  private String createUser;
+
+  @TableField(fill = FieldFill.UPDATE)
+  private String updateTime;
+
+  @TableField(fill = FieldFill.UPDATE)
+  private String updateUser;
 
   public String getAccount() {
     return account;
@@ -129,5 +143,37 @@ public class User extends Entity implements UserDetails {
 
   public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
     this.authorities = authorities;
+  }
+
+  public String getCreateTime() {
+    return createTime;
+  }
+
+  public void setCreateTime(String createTime) {
+    this.createTime = createTime;
+  }
+
+  public String getCreateUser() {
+    return createUser;
+  }
+
+  public void setCreateUser(String createUser) {
+    this.createUser = createUser;
+  }
+
+  public String getUpdateTime() {
+    return updateTime;
+  }
+
+  public void setUpdateTime(String updateTime) {
+    this.updateTime = updateTime;
+  }
+
+  public String getUpdateUser() {
+    return updateUser;
+  }
+
+  public void setUpdateUser(String updateUser) {
+    this.updateUser = updateUser;
   }
 }
