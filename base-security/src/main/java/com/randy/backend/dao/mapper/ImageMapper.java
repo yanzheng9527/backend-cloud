@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ImageMapper {
   void insert(Image image);
-
   Image getOneById(int id);
 }

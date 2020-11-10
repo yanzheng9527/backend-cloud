@@ -1,6 +1,6 @@
 package com.randy.backend.service.impl;
 
-import com.randy.backend.common.BaseServiceImpl;
+import com.randy.backend.common.MyBaseServiceImpl;
 import com.randy.backend.dao.mapper.AuthorizationMapper;
 import com.randy.backend.model.Authorization;
 import com.randy.backend.model.Permission;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Primary
-public class AuthorizationServiceImpl extends BaseServiceImpl<Authorization>
+public class AuthorizationServiceImpl extends MyBaseServiceImpl<AuthorizationMapper, Authorization>
     implements AuthorizationService {
   @Autowired AuthorizationMapper authorizationMapper;
   @Autowired RoleService roleService;
@@ -31,6 +31,6 @@ public class AuthorizationServiceImpl extends BaseServiceImpl<Authorization>
 
   @Override
   public List<Authorization> aopTest3() {
-    return authorizationMapper.selectAll();
+    return authorizationMapper.selectList(null);
   }
 }

@@ -1,0 +1,10 @@
+FROM openjdk:8u212-jre-slim
+VOLUME /tmp
+ADD /backend-web.jar app.jar
+ADD /ssl_client.crt ssl_client.crt
+ADD /Entrypoint.sh Entrypoint.sh
+ENV jasypt.encryptor.password=373181c1-8e10-4ec8-9a80-91925da94c26
+RUN keytool -import -alias cas -storepass changeit -keystore "$JAVA_HOME/lib/security/cacerts" -file ssl_client.crt -storepass changeit -noprompt
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+#RUN ["chmod", "+x", "/Entrypoint.sh"]
+#ENTRYPOINT ["./Entrypoint.sh"]

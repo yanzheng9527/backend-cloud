@@ -1,6 +1,6 @@
 package com.randy.backend.web.controller;
 
-import com.randy.backend.common.BaseController;
+import com.randy.backend.common.MyBaseController;
 import com.randy.backend.model.Authorization;
 import com.randy.backend.service.AuthorizationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/authorization")
-public class AuthorizationController extends BaseController<Authorization> {
+public class AuthorizationController extends MyBaseController<AuthorizationService, Authorization> {
   @Autowired protected AuthorizationService authorizationService;
 
   @RequestMapping(value = "/aopTest3", method = RequestMethod.GET)

@@ -1,8 +1,8 @@
 package com.randy.backend.web.controller;
 
-import com.github.pagehelper.PageInfo;
-import com.randy.backend.common.BaseController;
 import com.randy.backend.common.DataType;
+import com.randy.backend.common.MyBaseController;
+import com.randy.backend.common.MyPage;
 import com.randy.backend.common.SqlParam;
 import com.randy.backend.enums.SqlOperator;
 import com.randy.backend.model.Dto;
@@ -11,12 +11,10 @@ import com.randy.backend.model.User;
 import com.randy.backend.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,9 +22,8 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
-public class UserController extends BaseController<User> {
+public class UserController extends MyBaseController<UserService, User> {
   private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-  @Autowired protected UserService userService;
 
   @RequestMapping(value = "/test", method = RequestMethod.GET)
   public String test() {
@@ -37,13 +34,14 @@ public class UserController extends BaseController<User> {
 
   @RequestMapping(value = "/batchInsert", method = RequestMethod.GET)
   public String batchInsert() {
-    User user = new User();
+    ArrayList<User> users = new ArrayList<>();
     for (int i = 0; i < 500000; i++) {
+      User user = new User();
       user.setId(String.valueOf(i));
       user.setAccount(String.valueOf(i));
       user.setPassword("pwd" + i);
-      service.insertSelective(user);
     }
+    myBaseService.saveBatch(users);
     return "success";
   }
 
@@ -73,20 +71,47 @@ public class UserController extends BaseController<User> {
   //    return apiHandler.responseDto(pageInfo);
   //  }
 
+  //  @RequestMapping(value = "/query", method = RequestMethod.GET)
+  //  public Dto query(
+  //      String account,
+  //      String phone,
+  //      @RequestParam(required = false, defaultValue = "1") int currentPage,
+  //      @RequestParam(required = false, defaultValue = "10") int pageSize) {
+  //    //    PageInfo<User> pageInfo = userService.query(account, phone, currentPage, pageSize);
+  //    SqlParam sqlParam1 = new SqlParam("account", DataType.STRING, account, SqlOperator.LIKE);
+  //    SqlParam sqlParam2 = new SqlParam("phone", DataType.STRING, phone, SqlOperator.LIKE);
+  //    List<SqlParam> sqlParams = new ArrayList<>();
+  //    sqlParams.add(sqlParam1);
+  //    sqlParams.add(sqlParam2);
+  //    PageInfo<User> pageInfo = userService.pagingQuery(sqlParams, currentPage, pageSize,
+  // User.class);
+  //    return apiHandler.responseDto(pageInfo);
+  //  }
+
   @RequestMapping(value = "/query", method = RequestMethod.GET)
   public Dto query(
       String account,
       String phone,
       @RequestParam(required = false, defaultValue = "1") int currentPage,
       @RequestParam(required = false, defaultValue = "10") int pageSize) {
-    //    PageInfo<User> pageInfo = userService.query(account, phone, currentPage, pageSize);
     SqlParam sqlParam1 = new SqlParam("account", DataType.STRING, account, SqlOperator.LIKE);
     SqlParam sqlParam2 = new SqlParam("phone", DataType.STRING, phone, SqlOperator.LIKE);
     List<SqlParam> sqlParams = new ArrayList<>();
     sqlParams.add(sqlParam1);
     sqlParams.add(sqlParam2);
-    PageInfo<User> pageInfo = userService.pagingQuery(sqlParams, currentPage, pageSize, User.class);
-    return apiHandler.responseDto(pageInfo);
+    MyPage<User> userPage = myBaseService.pagingQuery(sqlParams, currentPage, pageSize);
+    return apiHandler.responseDto(userPage);
+  }
+
+  @RequestMapping(value = "/customPagingQuery", method = RequestMethod.GET)
+  public Dto customPagingQuery(
+      String account,
+      String phone,
+      @RequestParam(required = false, defaultValue = "1") int currentPage,
+      @RequestParam(required = false, defaultValue = "10") int pageSize) {
+    MyPage<User> page = new MyPage<>(currentPage, pageSize);
+    MyPage<User> userPage = myBaseService.customPagingQuery(page, account, phone);
+    return apiHandler.responseDto(userPage);
   }
 
   @RequestMapping(value = "/loginTest", method = RequestMethod.POST)
@@ -130,16 +155,16 @@ public class UserController extends BaseController<User> {
   @RequestMapping(value = "/aopTest", method = RequestMethod.GET)
   //  @Dao("controller test")
   public List<User> aopTest() {
-    List<User> users = userService.aopTest();
-    System.out.println("userService:" + userService.getClass());
+    List<User> users = myBaseService.aopTest();
+    System.out.println("userService:" + myBaseService.getClass());
     //    return apiHandler.responseDto(users);
     return users;
   }
 
   @RequestMapping(value = "/aopTest2", method = RequestMethod.GET)
   public List<User> aopTest2() {
-    List<User> users = userService.aopTest2();
-    System.out.println("userService:" + userService.getClass());
+    List<User> users = myBaseService.aopTest2();
+    System.out.println("userService:" + myBaseService.getClass());
     //    return apiHandler.responseDto(users);
     return users;
   }
@@ -148,12 +173,12 @@ public class UserController extends BaseController<User> {
   public ResponseEntity<Dto> register(User user) {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     user.setPassword(encoder.encode(user.getPassword()));
-    return ResponseEntity.ok(new Dto(userService.insert(user)));
+    return ResponseEntity.ok(new Dto(myBaseService.save(user)));
   }
 
-  @GetMapping("/member")
-  public Principal user(Principal member) {
-    /** 获取当前用户信息 */
-    return member;
-  }
+  //  @GetMapping("/member")
+  //  public Principal user(Principal member) {
+  //    /** 获取当前用户信息 */
+  //    return member;
+  //  }
 }

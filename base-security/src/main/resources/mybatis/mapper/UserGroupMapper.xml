@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.randy.backend.dao.mapper.UserGroupMapper" >
+    <resultMap id="BaseResultMap" type="com.randy.backend.model.UserGroup" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="groupname" property="groupName" jdbcType="VARCHAR" />
+        <result column="desc" property="desc" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        usergroup.id, usergroup.groupname, usergroup.desc
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM usergroup
+    </select>
+
+    <select id="getOne" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM usergroup
+        WHERE groupname = #{groupName}
+    </select>
+
+    <select id="getOneById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM usergroup
+        WHERE id = #{id}
+    </select>
+
+    <!--<insert id="insert" parameterType="com.randy.backend.model.UserGroup" >-->
+        <!--INSERT INTO-->
+        <!--usergroup-->
+        <!--(groupname, usergroup.desc)-->
+        <!--VALUES-->
+        <!--(#{groupName}, #{desc})-->
+    <!--</insert>-->
+
+    <!--<update id="update" parameterType="com.randy.backend.model.UserGroup" >-->
+        <!--UPDATE-->
+        <!--usergroup-->
+        <!--SET-->
+        <!--<if test="groupName != null">groupname = #{groupName},</if>-->
+        <!--<if test="desc != null">usergroup.desc = #{desc}</if>-->
+        <!--WHERE-->
+        <!--id = #{id}-->
+    <!--</update>-->
+
+    <!--<delete id="delete" parameterType="java.lang.String" >-->
+        <!--DELETE FROM-->
+        <!--usergroup-->
+        <!--WHERE-->
+        <!--groupname =#{groupName}-->
+    <!--</delete>-->
+
+    <delete id="deleteById" parameterType="java.lang.Integer" >
+        DELETE FROM
+        usergroup
+        WHERE
+        id =#{id}
+    </delete>
+
+    <!--<select id="getAllForActiviti" parameterType="org.activiti.engine.impl.GroupQueryImpl" resultMap="BaseResultMap"  >-->
+        <!--SELECT-->
+        <!--a.id, a.groupname, a.desc-->
+        <!--FROM usergroup as a inner join user as b on a.id = b.usergroupid-->
+        <!--<where>-->
+            <!--<if test="userId != null">-->
+                <!--and b.username = #{userId}-->
+            <!--</if>-->
+        <!--</where>-->
+    <!--</select>-->
+
+</mapper>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.randy.backend.dao.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.randy.backend.model.User" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="usergroupid" property="userGroupId" jdbcType="INTEGER" />
+        <result column="username" property="userName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="groupname" property="groupName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, usergroupid, username, password
+    </sql>
+
+    <select id="getAllWithGroup" resultMap="BaseResultMap">
+        select * from user as a,usergroup as b where a.usergroupid = b.id
+    </select>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+    </select>
+
+    <select id="getOne" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+        WHERE username = #{userName}
+    </select>
+
+    <select id="getOneById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+  <select id="checkUser" parameterType="com.randy.backend.model.User" resultMap="BaseResultMap" >
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM user
+    WHERE username = #{userName} and password = #{password}
+  </select>
+
+    <!--<insert id="insert" parameterType="com.randy.backend.model.User" >-->
+        <!--INSERT INTO-->
+        <!--user-->
+        <!--(usergroupid, username, password)-->
+        <!--VALUES-->
+        <!--(#{userGroupId}, #{userName}, #{password})-->
+    <!--</insert>-->
+
+    <!--<update id="update" parameterType="com.randy.backend.model.User" >-->
+        <!--UPDATE-->
+        <!--user-->
+        <!--SET-->
+        <!--<if test="userName != null">username = #{userName},</if>-->
+        <!--<if test="password != null">password = #{password},</if>-->
+        <!--<if test="userGroupId != null">usergroupid = #{userGroupId}</if>-->
+        <!--WHERE-->
+        <!--id = #{id}-->
+    <!--</update>-->
+
+    <!--<delete id="delete" parameterType="java.lang.String" >-->
+        <!--DELETE FROM-->
+        <!--user-->
+        <!--WHERE-->
+        <!--username =#{userName}-->
+    <!--</delete>-->
+
+    <!--<delete id="deleteById" parameterType="java.lang.Integer" >-->
+        <!--DELETE FROM-->
+        <!--user-->
+        <!--WHERE-->
+        <!--id =#{id}-->
+    <!--</delete>-->
+</mapper>
