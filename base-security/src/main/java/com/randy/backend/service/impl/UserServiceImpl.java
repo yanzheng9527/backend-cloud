@@ -1,5 +1,6 @@
 package com.randy.backend.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.randy.backend.common.MyBaseServiceImpl;
 import com.randy.backend.common.MyPage;
 import com.randy.backend.dao.mapper.UserMapper;
@@ -38,6 +39,13 @@ public class UserServiceImpl extends MyBaseServiceImpl<UserMapper, User> impleme
   //  public List<User> aopTest2() {
   //    return userMapper.selectAll();
   //  }
+
+  public User findByAccount(String account) {
+    User user = new User();
+    user.setAccount(account);
+    User result = baseMapper.selectOne(new QueryWrapper<>(user));
+    return result;
+  }
 
   @Override
   public List<User> aopTest() {

@@ -11,6 +11,7 @@ import java.util.List;
 
 public class MyBaseServiceImpl<M extends BaseMapper<T>, T extends Entity> extends ServiceImpl<M, T>
     implements MyBaseService<T> {
+
   @Override
   public MyPage<T> pagingQuery(List<SqlParam> sqlParams, int currentPage, int pageSize) {
     MyPage<T> page = new MyPage<>(currentPage, pageSize);

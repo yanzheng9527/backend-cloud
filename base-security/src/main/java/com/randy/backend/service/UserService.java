@@ -11,6 +11,8 @@ import java.util.List;
 public interface UserService extends MyBaseService<User> {
   //  PageInfo<User> query(String account, String phone, int currentPage, int pageSize);
 
+  User findByAccount(String username);
+
   List<User> aopTest();
 
   List<User> aopTest2();

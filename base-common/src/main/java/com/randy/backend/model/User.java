@@ -19,7 +19,7 @@ public class User extends Entity implements UserDetails {
   //  @Transient private String permCodes;
   //  private String[] permCodes;
   private transient Set<String> permCodes = new HashSet<>();
-  private Collection<? extends GrantedAuthority> authorities;
+  private transient Collection<? extends GrantedAuthority> authorities;
 
   @TableField(fill = FieldFill.INSERT)
   private String createTime;

@@ -38,13 +38,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests()
-        .antMatchers("/user/register")
-        .permitAll()
-        .antMatchers("/oauth/**")
-        .permitAll()
-        .antMatchers("/actuator/**")
-        .permitAll();
+    //    http.authorizeRequests()
+    //        .antMatchers("/user/register")
+    //        .permitAll()
+    //        .antMatchers("/oauth/**")
+    //        .permitAll()
+    //        .antMatchers("/actuator/**")
+    //        .permitAll();
     // 由于所有接口默认会被资源服务器保护的，所以这个地方我们需要放行注册接口和监控检查接口
+
+    http.authorizeRequests().anyRequest().permitAll();
   }
 }

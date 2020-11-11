@@ -1,5 +1,6 @@
 package com.randy.backend.web.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.randy.backend.common.DataType;
 import com.randy.backend.common.MyBaseController;
 import com.randy.backend.common.MyPage;
@@ -9,12 +10,16 @@ import com.randy.backend.model.Dto;
 import com.randy.backend.model.Permission;
 import com.randy.backend.model.User;
 import com.randy.backend.service.UserService;
+import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -181,4 +186,14 @@ public class UserController extends MyBaseController<UserService, User> {
   //    /** 获取当前用户信息 */
   //    return member;
   //  }
+
+  @GetMapping("/getCurrentUser")
+  public Object getCurrentUser(Authentication authentication, HttpServletRequest request) {
+    String header = request.getHeader("Authorization");
+    String token = StrUtil.subAfter(header, "bearer ", false);
+    return Jwts.parser()
+        .setSigningKey("test_key".getBytes(StandardCharsets.UTF_8))
+        .parseClaimsJws(token)
+        .getBody();
+  }
 }

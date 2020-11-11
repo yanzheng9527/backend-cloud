@@ -1,6 +1,6 @@
 package com.randy.backend.seaweedfs;
 
-import com.randy.backend.WebApplication;
+import com.randy.backend.BaseSecurityApplication;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +16,7 @@ import org.springframework.util.MultiValueMap;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    classes = {WebApplication.class})
+    classes = {BaseSecurityApplication.class})
 public class SeaweedfsTest {
   @Autowired private TestRestTemplate testRestTemplate;
 

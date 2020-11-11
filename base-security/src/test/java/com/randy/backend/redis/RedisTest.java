@@ -1,6 +1,6 @@
 package com.randy.backend.redis;
 
-import com.randy.backend.WebApplication;
+import com.randy.backend.BaseSecurityApplication;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = WebApplication.class)
+@SpringBootTest(classes = BaseSecurityApplication.class)
 public class RedisTest {
 
   @Autowired StringRedisTemplate stringRedisTemplate;
