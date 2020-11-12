@@ -14,11 +14,11 @@
     <description>provider</description>
 
     <dependencies>
-        <dependency>
-            <groupId>com.randy.backend</groupId>
-            <artifactId>base-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.randy.backend</groupId>-->
+        <!--            <artifactId>base-common</artifactId>-->
+        <!--            <version>0.0.1-SNAPSHOT</version>-->
+        <!--        </dependency>-->
         <!-- Spring Cloud Consul 的支持-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
