@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('install') {
       steps {
+        sh 'printenv'
         sh 'mvn clean install'
       }
     }
