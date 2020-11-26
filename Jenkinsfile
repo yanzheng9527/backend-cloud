@@ -1,9 +1,9 @@
 pipeline {
   agent none
   stages {
-    stage('test') {
+    stage('install') {
       steps {
-        echo 'hello'
+        sh 'mvn clean install'
       }
     }
 
