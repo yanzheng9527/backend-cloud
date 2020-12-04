@@ -18,7 +18,7 @@ pipeline {
           }
         }
 
-        stage('') {
+        stage('error') {
           steps {
             input(message: 'select env', id: '1', ok: '2')
           }
